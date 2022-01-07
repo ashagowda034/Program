@@ -1,0 +1,68 @@
+                                           DEMO.JSP
+                                     =========================
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="HelloServlet">			
+ Please enter a color <br>
+<input type="text" name="color"size="20px">
+<input type="submit" value="submit">						
+</form>		
+</body>
+</html>
+
+
+                                          ServletProgram
+                               ====================================
+public class HelloWorld extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		 String color= request.getParameter("color");    
+		    PrintWriter out = response.getWriter();
+		    out.println (
+		      "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" + \"https://protect-de.mimecast.com/s/2uy_C08wN7iGn5DBDTw31s8?domain=w3.org">\n" +
+		      "<html> \n" +
+		        "<head> \n" + "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\"> \n" +
+		          "<title> My first jsp  </title> \n" +
+		        "</head> \n" +
+		        "<body> \n" +
+		          "<font size=\"12px\" color=\"" + color + "\">" +
+		            "Hello World" +
+		          "</font> \n" +
+		        "</body> \n" +
+		      "</html>" 
+		    );  
+	}
+}
+
+
+                                       WEB.XML
+                          =================================
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="https://protect-de.mimecast.com/s/8Yk8CgpROEiAvRxyxFoPi27?domain=w3.org" xmlns="https://protect-de.mimecast.com/s/EaM1CjYXjKsnzXMmMi5hSnx?domain=xmlns.jcp.org" xsi:schemaLocation="https://protect-de.mimecast.com/s/EaM1CjYXjKsnzXMmMi5hSnx?domain=xmlns.jcp.org https://protect-de.mimecast.com/s/JDmxCk2YkLCODj6B6F9oW2R?domain=xmlns.jcp.org" id="WebApp_ID" version="3.1">
+  <display-name>WebProjectDemo2</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+ <servlet>
+    <servlet-name>Hello</servlet-name>
+    <servlet-class>org.gen.jsp.HelloWorld</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hello</servlet-name>
+    <url-pattern>/HelloServlet</url-pattern> 
+</servlet-mapping>     
+</web-app>
